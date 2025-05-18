@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MC Gait – Master of Ceremony & Officiant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome CDN for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0d1b2a;
+      color: #ffffff;
+    }
+    h1, h2 {
+      font-family: 'Playfair Display', serif;
+    }
+    .gold {
+      color: #d4af37;
+    }
+    .gold-bg {
+      background-color: #d4af37;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+    }
+    .gallery img {
+      transition: transform 0.3s ease-in-out;
+    }
+    .gallery img:hover {
+      transform: scale(1.1);
+    }
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+    }
+    .full-body-img {
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="min-h-screen flex flex-col-reverse md:flex-row items-center justify-center px-6 py-20 gap-12">
+    <div class="md:w-1/2 text-center md:text-left">
+      <h1 class="text-5xl font-bold gold mb-4">MC Gait</h1>
+      <p class="text-xl text-gray-300 mb-6">Master of Ceremony | Wedding Officiant | Events Professional</p>
+      <p class="mb-6 text-gray-400">Crafting elegant, memorable experiences for weddings, corporate events, and personal milestones. A voice you can trust, a presence that elevates.</p>
+      <div class="flex justify-center md:justify-start gap-4">
+        <a href="#contact" class="gold-bg text-black px-6 py-3 rounded-full font-semibold shadow-md hover:opacity-90 transition">Contact Me</a>
+        <a href="#services" class="border border-gray-400 px-6 py-3 rounded-full font-semibold text-white hover:border-white transition">Services</a>
+      </div>
+    </div>
+    <div class="md:w-1/2 flex justify-center">
+      <img src="img/one.png" alt="MC Alex Full Body" class="full-body-img w-full h-auto max-w-md md:max-w-lg"/>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-20 bg-[#1b263b]">
+    <h2 class="text-4xl font-bold text-center gold mb-12">My Services</h2>
+    <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto px-6">
+      <div class="glass p-6 rounded-xl text-center border border-gray-600">
+        <h3 class="text-xl font-semibold mb-3 text-white">Wedding Officiant</h3>
+        <p class="text-gray-300">Personalized ceremonies that reflect your love story and values. Legal and spiritual guidance included.</p>
+      </div>
+      <div class="glass p-6 rounded-xl text-center border border-gray-600">
+        <h3 class="text-xl font-semibold mb-3 text-white">Master of Ceremony</h3>
+        <p class="text-gray-300">Poised, energetic, and professional hosting to keep your event flowing with style and joy.</p>
+      </div>
+      <div class="glass p-6 rounded-xl text-center border border-gray-600">
+        <h3 class="text-xl font-semibold mb-3 text-white">Special Events</h3>
+        <p class="text-gray-300">From birthdays to corporate galas, I help create unforgettable moments with grace and warmth.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Gallery Section -->
+  <section class="py-20 px-6 bg-[#0d1b2a]">
+    <h2 class="text-4xl font-bold text-center gold mb-12">Event Moments</h2>
+    <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto gallery">
+      <img src="img/one.png" alt="Wedding moment" class="rounded-lg shadow-lg object-cover h-64 w-full cursor-pointer" onclick="openLightbox(this.src)">
+      <img src="img/one.png" alt="Hosting event" class="rounded-lg shadow-lg object-cover h-64 w-full cursor-pointer" onclick="openLightbox(this.src)">
+      <img src="img/one.png" alt="Celebration" class="rounded-lg shadow-lg object-cover h-64 w-full cursor-pointer" onclick="openLightbox(this.src)">
+      <img src="img/one.png" alt="Outdoor event" class="rounded-lg shadow-lg object-cover h-64 w-full cursor-pointer" onclick="openLightbox(this.src)">
+      <img src="img/one.png" alt="Ceremony" class="rounded-lg shadow-lg object-cover h-64 w-full cursor-pointer" onclick="openLightbox(this.src)">
+      <img src="img/one.png" alt="Professional setting" class="rounded-lg shadow-lg object-cover h-64 w-full cursor-pointer" onclick="openLightbox(this.src)">
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section class="py-20 bg-[#1b263b] px-6 text-center">
+    <h2 class="text-4xl font-bold gold mb-12">Watch Me In Action</h2>
+    <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe class="w-full h-64 md:h-80 rounded-lg shadow-lg" src="https://www.youtube.com/embed/uftFx8_rBIE?si=GKjr0NWDjKoFzocM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe class="w-full h-64 md:h-80 rounded-lg shadow-lg" src="https://www.youtube.com/embed/jze8j0gZe64?si=7slIlWCf03GdqGfk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 bg-[#1b263b] text-center px-6">
+    <h2 class="text-4xl font-bold gold mb-4">Let’s Connect</h2>
+    <p class="text-gray-300 mb-8">For bookings or inquiries, reach out via phone or WhatsApp.</p>
+    <div class="flex justify-center gap-6">
+      <a href="https://wa.me/1234567890" target="_blank" class="gold-bg text-black font-semibold py-3 px-6 rounded-full shadow hover:opacity-90 transition">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+      <a href="https://twitter.com/yourhandle" target="_blank" class="gold-bg text-black font-semibold py-3 px-6 rounded-full shadow hover:opacity-90 transition">
+        <i class="fab fa-twitter"></i> Twitter
+      </a>
+      <a href="https://instagram.com/yourhandle" target="_blank" class="gold-bg text-black font-semibold py-3 px-6 rounded-full shadow hover:opacity-90 transition">
+        <i class="fab fa-instagram"></i> Instagram
+      </a>
+      <a href="https://facebook.com/yourhandle" target="_blank" class="gold-bg text-black font-semibold py-3 px-6 rounded-full shadow hover:opacity-90 transition">
+        <i class="fab fa-facebook"></i> Facebook
+      </a>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Full View">
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center text-gray-400 py-6 text-sm">
+    © 2025 MC Alex | Professional Ceremonies with Heart
+  </footer>
+
+  <script>
+    // Open Lightbox
+    function openLightbox(src) {
+      document.getElementById('lightbox').style.display = 'flex';
+      document.getElementById('lightbox-img').src = src;
+    }
+
+    // Close Lightbox
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
