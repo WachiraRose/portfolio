@@ -2,166 +2,392 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MC Gait – Master of Ceremony & Officiant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MC Gait - Professional Services & Booking with Slate Editor</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome CDN for icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-papb0Ie5WVv4J37Zy2Cy6NTLfku1mMd+WtfVHYT6+NeU4X7zZJeHzM7xkyuKiTfiW9RvhFv1/eqmSjtj1u4faQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
 
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0d1b2a;
-      color: #ffffff;
+    /* Custom gradient animation */
+    @keyframes shine {
+      0% {
+        background-position: -200% center;
+      }
+      100% {
+        background-position: 200% center;
+      }
     }
-    h1, h2 {
-      font-family: 'Playfair Display', serif;
+    .shine-text {
+      background: linear-gradient(270deg, #e6e3e4, #8d8080, #f0d90e, #e4e004);
+      background-size: 400% 400%;
+      animation: shine 4s ease infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .gold {
-      color: #d4af37;
+    /* Button hover glow */
+    .btn-glow {
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s ease;
     }
-    .gold-bg {
-      background-color: #d4af37;
+    .btn-glow::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(231, 179, 6, 0.7), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      filter: blur(10px);
+      z-index: 0;
     }
-    .glass {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
+    .btn-glow:hover::before {
+      opacity: 1;
     }
-    .gallery img {
-      transition: transform 0.3s ease-in-out;
+    .btn-glow:hover {
+      color: #fff;
+      z-index: 1;
     }
-    .gallery img:hover {
-      transform: scale(1.1);
+    /* Card hover lift */
+    .card-hover:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 15px 25px rgba(244, 63, 94, 0.4);
     }
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      justify-content: center;
-      align-items: center;
+    /* Social icon hover */
+    .social-icon {
+      transition: transform 0.3s ease, color 0.3s ease;
     }
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 8px;
+    .social-icon:hover {
+      transform: scale(1.2);
+      color: #332f2f;
     }
-    .full-body-img {
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      object-fit: cover;
+    /* Slate Editor styles */
+    .editor {
+      border: 1px solid #4c4e4c;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      min-height: 150px;
+      background-color: #0a2a5a; /* Tailwind slate-800 */
+      color: #464746; /* Tailwind red-400 */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 1rem;
+    }
+    .editor:focus {
+      outline: 2px solid #e3ebe3; /* brighter red */
+    }
+    /* Placeholder styling */
+    .placeholder {
+      color: #9fafa7; /* lighter red */
+      user-select: none;
+      pointer-events: none;
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
     }
   </style>
 </head>
-<body>
+<body class="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-slate-200 font-sans">
 
-  <!-- Hero -->
-  <section class="min-h-screen flex flex-col-reverse md:flex-row items-center justify-center px-6 py-20 gap-12">
-    <div class="md:w-1/2 text-center md:text-left">
-      <h1 class="text-5xl font-bold gold mb-4">MC Gait</h1>
-      <p class="text-xl text-gray-300 mb-6">Master of Ceremony | Wedding Officiant | Events Professional</p>
-      <p class="mb-6 text-gray-400">Crafting elegant, memorable experiences for weddings, corporate events, and personal milestones. A voice you can trust, a presence that elevates.</p>
-      <div class="flex justify-center md:justify-start gap-4">
-        <a href="#contact" class="gold-bg text-black px-6 py-3 rounded-full font-semibold shadow-md hover:opacity-90 transition">Contact Me</a>
-        <a href="#services" class="border border-gray-400 px-6 py-3 rounded-full font-semibold text-white hover:border-white transition">Services</a>
-      </div>
+  <!-- Top Profile Container -->
+  <section class="bg-gradient-to-r from-slate-800 via-slate-900 to-black border-b border-white-600 py-6 px-6 md:px-12 max-w-7xl mx-auto flex items-center justify-between shadow-lg">
+    <div class="text-left">
+      <h1 class="text-3xl font-extrabold text-white-400 shine-text">Gaitho</h1>
+      <p class="text-white-400 mt-1 tracking-wide uppercase font-semibold">Professional MC, Wedding Officiant & Notary</p>
     </div>
-    <div class="md:w-1/2 flex justify-center">
-      <img src="img/one.png" alt="MC Alex Full Body" class="full-body-img w-full h-auto max-w-md md:max-w-lg"/>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section id="services" class="py-20 bg-[#1b263b]">
-    <h2 class="text-4xl font-bold text-center gold mb-12">My Services</h2>
-    <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto px-6">
-      <div class="glass p-6 rounded-xl text-center border border-gray-600">
-        <h3 class="text-xl font-semibold mb-3 text-white">Wedding Officiant</h3>
-        <p class="text-gray-300">Personalized ceremonies that reflect your love story and values. Legal and spiritual guidance included.</p>
-      </div>
-      <div class="glass p-6 rounded-xl text-center border border-gray-600">
-        <h3 class="text-xl font-semibold mb-3 text-white">Master of Ceremony</h3>
-        <p class="text-gray-300">Poised, energetic, and professional hosting to keep your event flowing with style and joy.</p>
-      </div>
-      <div class="glass p-6 rounded-xl text-center border border-gray-600">
-        <h3 class="text-xl font-semibold mb-3 text-white">Special Events</h3>
-        <p class="text-gray-300">From birthdays to corporate galas, I help create unforgettable moments with grace and warmth.</p>
-      </div>
+    <div class="flex-shrink-0 ml-6 transform hover:scale-110 transition duration-500 shadow-xl rounded-full ring-4 ring-amber-600">
+      <img
+        src="one\img\one.png"
+        alt="MC Gait Profile"
+        class="rounded-full w-24 h-24 object-cover"
+      />
     </div>
   </section>
 
-  <!-- Photo Gallery Section -->
-  <section class="py-20 px-6 bg-[#0d1b2a]">
-    <h2 class="text-4xl font-bold text-center gold mb-12">Event Moments</h2>
-    <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto gallery">
-      <img src="img/one.png" alt="Wedding moment" class="rounded-lg shadow-lg object-cover h-64 w-full cursor-pointer" onclick="openLightbox(this.src)">
-      <img src="img/one.png" alt="Hosting event" class="rounded-lg shadow-lg object-cover h-64 w-full cursor-pointer" onclick="openLightbox(this.src)">
-      <img src="img/one.png" alt="Celebration" class="rounded-lg shadow-lg object-cover h-64 w-full cursor-pointer" onclick="openLightbox(this.src)">
-      <img src="img/one.png" alt="Outdoor event" class="rounded-lg shadow-lg object-cover h-64 w-full cursor-pointer" onclick="openLightbox(this.src)">
-      <img src="img/one.png" alt="Ceremony" class="rounded-lg shadow-lg object-cover h-64 w-full cursor-pointer" onclick="openLightbox(this.src)">
-      <img src="img/one.png" alt="Professional setting" class="rounded-lg shadow-lg object-cover h-64 w-full cursor-pointer" onclick="openLightbox(this.src)">
-    </div>
-  </section>
-
-  <!-- Video Section -->
-  <section class="py-20 bg-[#1b263b] px-6 text-center">
-    <h2 class="text-4xl font-bold gold mb-12">Watch Me In Action</h2>
-    <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-      <div class="aspect-w-16 aspect-h-9">
-        <iframe class="w-full h-64 md:h-80 rounded-lg shadow-lg" src="https://www.youtube.com/embed/uftFx8_rBIE?si=GKjr0NWDjKoFzocM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-black text-white py-20 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-14">
+      <!-- Photo -->
+      <div class="w-full md:w-1/2 flex justify-center drop-shadow-2xl">
+        <img src="one\img\one.png" alt="MC Gait" class="rounded-3xl shadow-2xl w-80 h-auto object-cover border-8 border-amber-700" />
       </div>
-      <div class="aspect-w-16 aspect-h-9">
-        <iframe class="w-full h-64 md:h-80 rounded-lg shadow-lg" src="https://www.youtube.com/embed/jze8j0gZe64?si=7slIlWCf03GdqGfk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <!-- Intro -->
+      <div class="w-full md:w-1/2 text-center md:text-left max-w-xl">
+        <h2 class="text-6xl font-extrabold mb-6 tracking-tight shine-text drop-shadow-lg">Gaitho</h2>
+        <p class="text-2xl text-amber-400 font-semibold mb-6 leading-relaxed">
+          Master of Ceremony | Wedding Officiant | Notary | Auctioneer | Events Professional
+        </p>
+        <p class="text-white-300 mb-8 text-lg leading-relaxed drop-shadow-md">
+          With unmatched poise and a magnetic stage presence, MC Gait transforms events into unforgettable experiences. His dynamic skillset spans ceremonial hosting, legal officiating, certified notary services, high-stakes auctioneering, and full-scale event management.
+        </p>
+        <button onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})" 
+          class="btn-glow bg-lime-400 hover:bg-lime-400 font-bold px-8 py-4 rounded-full shadow-lg tracking-wider text-lg transition duration-300 uppercase">
+          Book Now
+        </button>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="py-20 bg-[#1b263b] text-center px-6">
-    <h2 class="text-4xl font-bold gold mb-4">Let’s Connect</h2>
-    <p class="text-gray-300 mb-8">For bookings or inquiries, reach out via phone or WhatsApp.</p>
-    <div class="flex justify-center gap-6">
-      <a href="https://wa.me/1234567890" target="_blank" class="gold-bg text-black font-semibold py-3 px-6 rounded-full shadow hover:opacity-90 transition">
-        <i class="fab fa-whatsapp"></i> WhatsApp
-      </a>
-      <a href="https://twitter.com/yourhandle" target="_blank" class="gold-bg text-black font-semibold py-3 px-6 rounded-full shadow hover:opacity-90 transition">
-        <i class="fab fa-twitter"></i> Twitter
-      </a>
-      <a href="https://instagram.com/yourhandle" target="_blank" class="gold-bg text-black font-semibold py-3 px-6 rounded-full shadow hover:opacity-90 transition">
-        <i class="fab fa-instagram"></i> Instagram
-      </a>
-      <a href="https://facebook.com/yourhandle" target="_blank" class="gold-bg text-black font-semibold py-3 px-6 rounded-full shadow hover:opacity-90 transition">
-        <i class="fab fa-facebook"></i> Facebook
-      </a>
+  <!-- Services Section -->
+  <section id="services" class="bg-gradient-to-tr from-slate-800 to-black py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-extrabold text-center mb-16 text-violet-500 tracking-wide">Services Offered</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+        <!-- MC -->
+        <article class="bg-gray-900 bg-opacity-70 p-8 rounded-3xl border border-violet-600 shadow-lg hover:shadow-2xl transition duration-300 card-hover">
+          <h3 class="text-3xl font-bold mb-3 text-violet-400 flex items-center gap-3">🎤 <span>Master of Ceremony</span></h3>
+          <p class="text-gray-300 mb-4 leading-relaxed font-medium">
+            From weddings and galas to award shows and church functions, MC Gait keeps the energy high and transitions smooth. With crowd engagement and time management skills, he ensures your event stays memorable and on track.
+          </p>
+          <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80" alt="MC at Event" class="rounded-xl mb-4 shadow-lg" />
+          <p class="text-gray-300 mb-4 leading-relaxed font-medium">
+            From weddings and galas to award shows and church functions, MC Gait keeps the energy high and transitions smooth. With crowd engagement and time management skills, he ensures your event stays memorable and on track.
+          </p>
+          <iframe class="w-full rounded-xl shadow-lg" height="260"  src="https://www.youtube.com/embed/jze8j0gZe64?si=tlzPq_xnysyr7zQ-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </article>
+
+        <!-- Wedding Officiant -->
+        <article class="bg-gray-900 bg-opacity-70 p-8 rounded-3xl border border-violet-600 shadow-lg hover:shadow-2xl transition duration-300 card-hover">
+          <h3 class="text-3xl font-bold mb-3 text-violet-400 flex items-center gap-3">💍 <span>Wedding Officiant</span></h3>
+          <p class="text-gray-300 mb-4 leading-relaxed font-medium">
+            As a licensed wedding officiant, MC Gait crafts and delivers heartfelt ceremonies that honor the couple’s values, traditions, and love story.
+          </p>
+          <img src="one\img\wedding.jpg" alt="Wedding Ceremony" class="rounded-xl mb-4 shadow-lg" />
+          <P class="text-gray-300 mb-4 leading-relaxed font-medium">
+            As a licensed wedding officiant, MC Gait crafts and delivers heartfelt ceremonies that honor the couple’s values, traditions, and love story.
+          </p>
+          <iframe class="w-full rounded-xl shadow-lg" height="260"  src="https://www.youtube.com/embed/hNEghsp78Nc?si=SwwqTKSVTGbqZhNj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </article>
+
+        <!-- Notary Public -->
+        <article class="bg-gray-900 bg-opacity-70 p-8 rounded-3xl border border-violet-600 shadow-lg hover:shadow-2xl transition duration-300 card-hover">
+          <h3 class="text-3xl font-bold mb-3 text-violet-400 flex items-center gap-3">🖋️ <span>Certified Notary Public</span></h3>
+          <p class="text-gray-300 mb-4 leading-relaxed font-medium">
+            Quick and reliable notarization services for your legal documents, contracts, and more. Trust in MC Gait’s certified expertise for all your official needs.
+          </p>
+          <img src="one/img/notary.jpg" alt="Notary Seal" class="rounded-xl mb-4 shadow-lg" />
+          <!--iframe class="w-full rounded-xl shadow-lg" height="260" src="https://www.youtube.com/embed/KkGi8Cx1ebc" title="Notary Services Example" allowfullscreen></iframe-->
+        </article>
+
+        <!-- Auctioneer -->
+        <article class="bg-gray-900 bg-opacity-70 p-8 rounded-3xl border border-violet-600 shadow-lg hover:shadow-2xl transition duration-300 card-hover">
+          <h3 class="text-3xl font-bold mb-3 text-violet-400 flex items-center gap-3">🔨 <span>Auctioneer</span></h3>
+          <p class="text-gray-300 mb-4 leading-relaxed font-medium">
+            Energetic and engaging auctioneering services for charity events, estate sales, and fundraisers that drive excitement and bidding wars.
+          </p>
+          <img src="one\img\one.png" alt="Auction" class="rounded-xl mb-4 shadow-lg" />
+          <!--iframe class="w-full rounded-xl shadow-lg" height="260" src="https://www.youtube.com/embed/xD6K_T51YB4" title="Auctioneer Example" allowfullscreen></iframe-->
+        </article>
+
+      </div>
     </div>
   </section>
 
-  <!-- Lightbox Modal -->
-  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img" src="" alt="Full View">
-  </div>
+  <!-- Booking Section -->
+  <section id="booking" class="bg-gradient-to-tr from-gray-900 via-black-600 to-black py-20 px-6">
+    <div class="max-w-4xl mx-auto bg-violet-950 bg-opacity-80 p-10 rounded-3xl border border-white-600 shadow-xl">
+      <h2 class="text-4xl font-extrabold mb-8 text-white-500 tracking-wide text-center">Book MC Gait</h2>
+      <form class="space-y-8 text-white-400 font-semibold" onsubmit="return handleBookingSubmit(event)">
+
+        <label class="block">
+          <span>Name</span>
+          <input
+            type="text"
+            name="name"
+            required
+            class="mt-2 w-full rounded-md border border-white-300 bg-transparent p-3 text-grey-400 placeholder-white-500 focus:outline-none focus:ring-2 focus:ring-gray-600"
+            placeholder="Your full name"
+          />
+        </label>
+
+        <label class="block">
+          <span>Email</span>
+          <input
+            type="email"
+            name="email"
+            required
+            class="mt-2 w-full rounded-md border border-white-300 bg-transparent p-3 text-grey-400 placeholder-white-500 focus:outline-none focus:ring-2 focus:ring-gray-600"
+            placeholder="you@example.com"
+          />
+        </label>
+
+        <label class="block">
+          <span>Event Date</span>
+          <input
+            type="date"
+            name="date"
+            required
+            class="mt-2 w-full rounded-md border border-white-300 bg-transparent p-3 text-grey-400 placeholder-white-500 focus:outline-none focus:ring-2 focus:ring-gray-600"
+          />
+        </label>
+
+        <!-- Slate.js Editor container -->
+        <label class="block relative">
+          <span>Additional Notes / Booking Details</span>
+          <div id="editor" class="editor mt-2" tabindex="0"></div>
+          <p id="placeholder" class="placeholder absolute left-4 top-8 pointer-events-none select-none text-gray-400">
+            Write any special instructions or details here...
+          </p>
+        </label>
+
+        <button
+          type="submit"
+          class="btn-glow bg-lime-700 hover:bg-lime-700 px-8 py-4 rounded-full font-bold shadow-lg w-full text-xl tracking-wider uppercase transition duration-300"
+        >
+          Submit Booking
+        </button>
+      </form>
+    </div>
+  </section>
 
   <!-- Footer -->
-  <footer class="text-center text-gray-400 py-6 text-sm">
-    © 2025 MC Alex | Professional Ceremonies with Heart
+  <footer class="bg-gradient-to-t from-black via-black-900 to-black-800 border-t border-black-600 py-8 text-center text-white-400 font-semibold text-sm tracking-wide">
+    <div class="flex justify-center space-x-6 mb-4">
+      <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Twitter" class="hover:text-blue-400">
+        <i class="fab fa-twitter fa-lg"></i>
+      </a>
+      <a href="https://facebook.com/yourprofile" target="_blank" aria-label="Facebook" class="hover:text-blue-600">
+        <i class="fab fa-facebook-f fa-lg"></i>
+      </a>
+      <a href="https://wa.me/yourphonenumber" target="_blank" aria-label="WhatsApp" class="hover:text-green-500">
+        <i class="fab fa-whatsapp fa-lg"></i>
+      </a>
+      <a href="tel:+1234567890" aria-label="Phone" class="hover:text-green-700">
+        <i class="fas fa-phone fa-lg"></i>
+      </a>
+      <a href="https://instagram.com/yourprofile" target="_blank" aria-label="Instagram" class="hover:text-pink-500">
+        <i class="fab fa-instagram fa-lg"></i>
+      </a>
+      <a href="https://m.me/yourprofile" target="_blank" aria-label="Messenger" class="hover:text-blue-500">
+        <i class="fab fa-facebook-messenger fa-lg"></i>
+      </a>
+    </div>
+    &copy; 2025 MC Gait Professional Services. All rights reserved.
   </footer>
+  
 
+  <!-- React & Slate.js scripts -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/slate@0.93.0/dist/slate.js"></script>
+  <script src="https://unpkg.com/slate-react@0.70.0/dist/slate-react.js"></script>
   <script>
-    // Open Lightbox
-    function openLightbox(src) {
-      document.getElementById('lightbox').style.display = 'flex';
-      document.getElementById('lightbox-img').src = src;
+    const { useState, useCallback, useMemo } = React;
+    const { createEditor, Transforms, Text } = Slate;
+    const { Slate, Editable, withReact } = SlateReact;
+
+    // React component for Slate editor
+    function BookingNotesEditor({ onChange }) {
+      const editor = useMemo(() => withReact(createEditor()), []);
+      const [value, setValue] = useState([
+        {
+          type: 'paragraph',
+          children: [{ text: '' }],
+        },
+      ]);
+
+      // Show/hide placeholder logic
+      const renderPlaceholder = () => {
+        const text = value.map(node => node.children.map(n => n.text).join('')).join('');
+        return text.length === 0;
+      };
+
+      const onChangeHandler = (newValue) => {
+        setValue(newValue);
+        onChange(newValue);
+      };
+
+      return React.createElement(Slate, { editor: editor, value: value, onChange: onChangeHandler },
+        React.createElement(Editable, {
+          className: 'editor',
+          placeholder: 'Write any special instructions or details here...',
+          spellCheck: true,
+          autoFocus: false,
+          onKeyDown(event) {
+            // You can customize key commands here
+          }
+        })
+      );
     }
 
-    // Close Lightbox
-    function closeLightbox() {
-      document.getElementById('lightbox').style.display = 'none';
+    // Mount the Slate editor into #editor div
+    function App() {
+      const [notes, setNotes] = React.useState([]);
+
+      React.useEffect(() => {
+        // Hide placeholder when typing
+        const editorDiv = document.getElementById('editor');
+        const placeholder = document.getElementById('placeholder');
+
+        const togglePlaceholder = () => {
+          const text = editorDiv.innerText.trim();
+          if (text.length === 0) {
+            placeholder.style.display = 'block';
+          } else {
+            placeholder.style.display = 'none';
+          }
+        };
+
+        editorDiv.addEventListener('input', togglePlaceholder);
+        togglePlaceholder();
+
+        return () => {
+          editorDiv.removeEventListener('input', togglePlaceholder);
+        };
+      }, []);
+
+      // Pass data back to form submission
+      window.getBookingNotes = () => {
+        // Extract plain text from Slate editor root element
+        const editorDiv = document.getElementById('editor');
+        return editorDiv.innerText.trim();
+      };
+
+      return React.createElement(BookingNotesEditor, { onChange: setNotes });
+    }
+
+    ReactDOM.createRoot(document.getElementById('editor')).render(React.createElement(App));
+
+    // Form submit handler
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const date = form.date.value;
+      const notes = window.getBookingNotes();
+
+      if (!name || !email || !date) {
+        alert('Please fill in all required fields.');
+        return false;
+      }
+
+      console.log('Booking info:', { name, email, date, notes });
+
+      alert(`Thank you, ${name}! Your booking request has been received.\n\nNotes: ${notes}`);
+
+      form.reset();
+
+      // Clear Slate editor content by reloading React component (simple hack)
+      ReactDOM.createRoot(document.getElementById('editor')).render(
+        React.createElement(App)
+      );
+
+      return false;
     }
   </script>
 </body>
